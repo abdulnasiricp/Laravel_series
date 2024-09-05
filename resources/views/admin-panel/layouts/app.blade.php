@@ -17,6 +17,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
     <!-- Custom Theme Style -->
     <link href="{{asset('admin-panel/css/custom.min.css')}}" rel="stylesheet">
+
+    @stack('style')
 </head>
 
 <body class="nav-md">
@@ -29,16 +31,9 @@
             @yield('content')
 
             @include('admin-panel.layouts.footer')
-            
-
-
 
         </div>
-
     </div>
-
-
-
 
 
     <!-- jQuery -->
@@ -48,6 +43,8 @@
 
     <!-- Custom Theme Scripts -->
     <script src="{{asset('admin-panel/js/custom.min.js')}}"></script>
+
+    @stack('scripts')
 
 </body>
 

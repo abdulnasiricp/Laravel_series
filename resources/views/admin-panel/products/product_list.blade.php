@@ -24,30 +24,34 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Username</th>
+                                <th>Title</th>
+                                <th>Price</th>
+                                <th>Discount Price</th>
+                                <th>Description</th>
+                                <th>Category</th>
+                                <th>Sub category</th>
+                                <th>Image</th>
+
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($products as $k=> $product)
                             <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
+
+                                <td>{{$k + 1}}</td>
+                                <td> {{$product->title}} </td>
+                                <td> {{$product->price}} </td>
+                                <td> {{$product->discount_price}} </td>
+                                <td> {{$product->description}} </td>
+                                <td> {{$product->category->name}} </td>
+                                <td> {{$product->subcategory->name}} </td>
+                                <td>
+                                    <img src="{{asset($product->image)}}" height="100">
+                                </td>
                             </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Larry</td>
-                                <td>the Bird</td>
-                                <td>@twitter</td>
-                            </tr>
+
+                            @endforeach
+
                         </tbody>
                     </table>
 

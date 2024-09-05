@@ -15,7 +15,18 @@ class Product extends Model
         'discount_price',
         'subcategory_id',
         'description',
-        'image'
+        'image',
     ];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+
+    }
+
+    public function subcategory()
+    {
+        return $this->belongsTo(SubCategory::class);
+    }
 
 }

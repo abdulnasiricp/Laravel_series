@@ -9,8 +9,6 @@
             <div class="title_left">
                 <h3>Product</h3>
             </div>
-
-
         </div>
         <div class="clearfix"></div>
         <div class="row">
@@ -21,82 +19,116 @@
 
                         <div class="clearfix"></div>
                     </div>
-                        <br />
-                        <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+                    <br />
+                    <form action="{{route('product.store')}}" enctype="multipart/form-data" method="POST">
+                        @csrf
 
-                            <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">First Name
-                                    <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 ">
-                                    <input type="text" id="first-name" required="required" class="form-control ">
-                                </div>
+                        <div class="item form-group">
+                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="title">Title
+                                <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 ">
+                                <input type="text" id="title" class="form-control " name="title" required>
                             </div>
-                            <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Last Name
-                                    <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 ">
-                                    <input type="text" id="last-name" name="last-name" required="required"
-                                        class="form-control">
-                                </div>
+                        </div>
+                        <div class="item form-group">
+                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="price">Price
+                                <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 ">
+                                <input type="text" id="price" name="price" class="form-control" required>
                             </div>
-                            <div class="item form-group">
-                                <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Middle
-                                    Name / Initial</label>
-                                <div class="col-md-6 col-sm-6 ">
-                                    <input id="middle-name" class="form-control" type="text" name="middle-name">
-                                </div>
+                        </div>
+                        <div class="item form-group">
+                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="discount_price">Discount
+                                Price
+                                <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 ">
+                                <input type="text" id="discount_price" name="discount_price" class="form-control"
+                                    required>
                             </div>
-                            <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align">Gender</label>
-                                <div class="col-md-6 col-sm-6 ">
-                                    <div id="gender" class="btn-group" data-toggle="buttons">
-                                        <label class="btn btn-secondary" data-toggle-class="btn-primary"
-                                            data-toggle-passive-class="btn-default">
-                                            <input type="radio" name="gender" value="male" class="join-btn"> &nbsp; Male
-                                            &nbsp;
-                                        </label>
-                                        <label class="btn btn-primary" data-toggle-class="btn-primary"
-                                            data-toggle-passive-class="btn-default">
-                                            <input type="radio" name="gender" value="female" class="join-btn"> Female
-                                        </label>
-                                    </div>
-                                </div>
+                        </div>
+                        <div class="item form-group">
+                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="description">Description
+                                <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 ">
+                                <textarea name="description" id="description" class="form-control" required></textarea>
                             </div>
-                            <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align">Date Of Birth <span
-                                        class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 ">
-                                    <input id="birthday" class="date-picker form-control" placeholder="dd-mm-yyyy"
-                                        type="text" required="required" type="text" onfocus="this.type='date'"
-                                        onmouseover="this.type='date'" onclick="this.type='date'"
-                                        onblur="this.type='text'" onmouseout="timeFunctionLong(this)">
-                                    <script>
-                                        function timeFunctionLong(input) {
-                                            setTimeout(function() {
-                                                input.type = 'text';
-                                            }, 60000);
-                                        }
-                                    </script>
-                                </div>
-                            </div>
-                            <div class="ln_solid"></div>
-                            <div class="item form-group">
-                                <div class="col-md-6 col-sm-6 offset-md-3">
-                                    <button class="btn btn-primary" type="button">Cancel</button>
-                                    <button class="btn btn-primary" type="reset">Reset</button>
-                                    <button type="submit" class="btn btn-success">Submit</button>
-                                </div>
-                            </div>
+                        </div>
+                        <div class="item form-group">
+                            <label for="category" class="col-form-label col-md-3 col-sm-3 label-align"
+                                class="form-control">Category <span class="required">*</span></label>
+                            <div class="col-md-6 col-sm-6 ">
+                                <select name="category_id" required class="form-control">
+                                    <option value="">Select category</option>
+                                    @foreach ($categories as $cat)
+                                    <option value="{{$cat->id}}">{{$cat->name}}</option>
 
-                        </form>
-                    </div>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="item form-group">
+                            <label for="subcategory" class="col-form-label col-md-3 col-sm-3 label-align"
+                                class="form-control">Sub Category
+                                <span class="required">*</span></label>
+                            <div class="col-md-6 col-sm-6 ">
+                                <select name="subcategory_id" required class="form-control">
+                                    <option value="">Select Sub category</option>
+                                    @foreach ($sub_categories as $sub_cat)
+                                    <option value="{{$sub_cat->id}}" class="sub_cat_options"
+                                        data-category_id="{{$sub_cat->category_id}}">
+                                        {{$sub_cat->name}}
+                                    </option>
+
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+
+                        <div class="item form-group">
+                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="image"
+                                class="form-control">Image
+                                <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 ">
+                                <input type="file" id="image" name="image" class="form-control">
+                            </div>
+                        </div>
+
+
+                        <div class="ln_solid"></div>
+                        <div class="item form-group">
+                            <div class="col-md-6 col-sm-6 offset-md-3">
+                                <button class="btn btn-primary" type="button">Cancel</button>
+                                <button class="btn btn-primary" type="reset">Reset</button>
+                                <button type="submit" class="btn btn-success">Submit</button>
+                            </div>
+                        </div>
+
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
+</div>
 <!-- /page content -->
+
 @endsection
+
+@push('scripts')
+<script>
+$('select[name=category_id]').change(function() {
+    var category_id = $(this).val();
+    $('.sub_cat_options').hide();
+    $('.sub_cat_options[data-category_id=' + category_id + ']').show();
+
+});
+</script>
+
+
+@endpush
